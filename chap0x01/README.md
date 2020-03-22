@@ -52,6 +52,7 @@ root权限：mount  /home/lyl/ 1.iso loopdir
 mkdir cd
 #### 同步光盘内容到目标工作目录
 rsync -av loopdir/ cd
+
 ![克隆光盘内容](img/7.png)
 #### 卸载iso镜像
 umount loopdir
@@ -140,8 +141,10 @@ sftp> put /local.html /remote/
 解决方法：先传入根目录，再在虚拟机上用mv移到指定文件。没有找到原因。
 ### 在启动新的虚拟机的时候，出现下面的情况
 ![failed to load](img/12.png)
+
 不知道之前那些步骤出了差错，只好从头再来一遍，又出现下面的情况
 ![seed failed](img/13.png)
+
 咨询其他同学，说是txt.cfg文件写错，但是我的是复制的，不应该会错。
 
 其他同学又说虚拟机必须加载iso镜像文件，尝试失败了两次（每次进入登陆页面，光驱就会消失）。
