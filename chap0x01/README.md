@@ -192,6 +192,34 @@ sshd服务没有安装打开
 
 [解决参考](https://www.e-learn.cn/content/linux/456204)
 
+## 附加问题：对比官方preseed.cfg文件与老师seed文件的不同
+
+SEED文件用于预置，用于自动安装过程的方法。
+
+左边为老师文件，右边为官方文件
+
+1.官方文件里很多地方没有写入具体值
+
+![1](img/25.png)
+
+![2](/chap0x01/img/26.png)
+2.改动
+
+![3](img/27.png)
+![4](img/28.jpg)
+![5](img/29.png)
+3.官方文件里注释掉，老师的文件去掉#
+
+![6](/chap0x01/img/30.png)
+![7](img/31.png)
+4.官方文件有，老师的文件里没有
+
+![8](img/32.png)
+
+### 老师的文件更具体，有特定的用途和功能。添加配置内容，相当于手动时的选择配置，作用于自动安装。改动的地方：取消倒计时等。
+
+[文本文件对比网站](http://www.jq22.com/textDifference)
+
 ## 参考文献 
 [老师ppt](https://c4pr1c3.github.io/LinuxSysAdmin/chap0x01.exp.md.html#/title-slide)
 
