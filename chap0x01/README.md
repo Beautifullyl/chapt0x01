@@ -11,7 +11,7 @@ Ubuntu 18.04 Server 64bit
 ### 2.配置双网卡
 #### ifconfig 查看配置网卡：只显示NAT网络网卡
 
-#### 按照老师视频修改01-netcfg.yaml文件
+#### 按照老师视频修改01-netcfg.yaml文件（Virtualbox安装完Ubuntu之后新添加的网卡如何实现系统开机自动启用和自动获取IP？）
 
 root权限：
 
@@ -27,6 +27,7 @@ root权限：
 ip a显示如下
 
 ![查看网卡ip](/chap0x01/img/1.jpg)
+
 
 ### 3.putty连接虚拟机
 #### 打开putty，输入host-only网卡ip，连接虚拟机
@@ -112,13 +113,6 @@ get custom.iso [本机地址]
 自动安装视频已上传b站，还在审核。
 
 [个人主页链接](https://space.bilibili.com/32520022)
-## Virtualbox安装完Ubuntu之后新添加的网卡如何实现系统开机自动启用和自动获取IP？
-### 1.修改网卡文件,设置ONBOOT的值为yes，让网络服务启动时使用该网卡。设置BOOTPROTO的值为dhcp，让网卡从DHCP服务器自动获取IP地址。
-vi /etc/network/interfaces
-
-　　ONBOOT=yes
-
-　　BOOTPROTO=dhcp
 
 ## 如何使用sftp在虚拟机和宿主机之间传输文件？
 ### 1.查看ssh服务是否安装，若否，安装ssh服务
@@ -190,14 +184,18 @@ get .profile
 ![虚拟机打开失败](/chap0x01/img/15.png)
 
 网上查询，试了好几种方法，没有成功，找不到问题源头，只好重装。
+### 6.Xshell6连接不上虚拟机
 
+![xshell](img/24.jpg)
+
+sshd服务没有安装打开
+
+[解决参考](https://www.e-learn.cn/content/linux/456204)
 
 ## 参考文献 
 [老师ppt](https://c4pr1c3.github.io/LinuxSysAdmin/chap0x01.exp.md.html#/title-slide)
 
-[自动安装具体步骤参考](https://blog.csdn.net/qq_31989521/article/details/58600426?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
+[自动安装具体步骤-参考](https://blog.csdn.net/qq_31989521/article/details/58600426?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
 
-[开机就可以自动获取IP地址上网参考](http://www.pgygho.com/help/fwq/16111.html)
-
-[使用ssh远程ubuntu虚拟机sftp传送文件参考](https://blog.csdn.net/banzhihuanyu/article/details/79169498
+[利用 sftp 在本地和服务器之间传输文件-参考](https://blog.csdn.net/gzxdale/article/details/81140889
 )
