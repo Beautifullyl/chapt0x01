@@ -109,35 +109,58 @@ mv custom.iso ../
 
 get custom.iso [本机地址]
 #### 新建虚拟机，设置光驱为custom.iso，启动虚拟机，实现自动安装
-自动安装视频已上传b站，还在审核。主页链接：https://space.bilibili.com/32520022
+自动安装视频已上传b站，还在审核。
+
+[个人主页链接](https://space.bilibili.com/32520022)
 ## Virtualbox安装完Ubuntu之后新添加的网卡如何实现系统开机自动启用和自动获取IP？
-### 1.使用chkconfig命令让网络服务在系统启动级别是2345时默认启动。
-　　chkconfig --level 2345 network on
-### 2.修改网卡文件ifcfg-eth0，设置ONBOOT的值为yes，让网络服务启动时使用该网卡。设置BOOTPROTO的值为dhcp，让网卡从DHCP服务器自动获取IP地址。
-vi /etc/sysconfig/network-scripts/ifcfg-eth0
+### 1.修改网卡文件,设置ONBOOT的值为yes，让网络服务启动时使用该网卡。设置BOOTPROTO的值为dhcp，让网卡从DHCP服务器自动获取IP地址。
+vi /etc/network/interfaces
 
 　　ONBOOT=yes
 
 　　BOOTPROTO=dhcp
 
-　　service network start
-
-
 ## 如何使用sftp在虚拟机和宿主机之间传输文件？
-### 1.端口映射
+### 1.查看ssh服务是否安装，若否，安装ssh服务
+查看ssh服务：ps -e |grep ssh
 
-打开虚拟网络编辑器，打开NAT设置，给虚拟机ip添加端口映射 
-### 2.打开ssh服务
-sudo /etc/init.d/ssh start
-### 3.查看端口是否打开
-netstat -ano | findstr "22"
-### 4.关闭宿主机防火墙
-### 进行连接
-sudo ssh user@remoteserveripaddr -p portnum
-### 5.sftp传送文件
-#### 首先登录上远程主机 ,再将本地文件传给远程主机
-sftp user@remoteserveripaddr 
-sftp> put /local.html /remote/
+安装ssh服务：apt-get install openssh-server
+
+![ssh](img/16.png)
+
+### 2.Xshell6采用sftp与linux虚拟机连接
+sftp [remotehost IP]
+
+![sftp connection](img/17.jpg)
+
+### 3.在图形用户面板上 窗口->传输新建文件，打开xftp的字符界面,直接关闭即可打开一个sftp窗口
+
+![xftp](img/18.jpg)
+
+#### (1)从服务器下载文件到本机
+##### 切换到本地的d盘下
+
+![d pan](img/19.png)
+
+##### 下载远程服务器上的.profile文件
+
+get .profile
+
+![get](/chap0x01/img/21.png)
+
+在d盘中
+
+![chuansong](img/20.png)
+
+#### (2)上传本地文件到远程服务器
+##### 切换本地文件的路径
+
+![bendiwenjian](img/22.png)
+
+##### 传送本地文件
+
+![本地文件](img/23.png)
+
 ## 出现的问题
 ### 1.host-only网卡的ip地址不显示
 第一次尝试的时候出现这个问题，向老师提问后，发现是关闭了DHCP服务器，开启后解决
@@ -148,11 +171,11 @@ sftp> put /local.html /remote/
 ![找不到路径2](img/10.png)
 
 解决方法：修改路径格式。暂时还没有找到规律
-### 或者是访问cd目录被拒绝
+### 3.或者是访问cd目录被拒绝
 ![拒绝](img/11.png)
 
 解决方法：先传入根目录，再在虚拟机上用mv移到指定文件。没有找到原因。
-### 在启动新的虚拟机的时候，出现下面的情况
+### 4.在启动新的虚拟机的时候，出现下面的情况
 ![failed to load](img/12.png)
 
 不知道之前那些步骤出了差错，只好从头再来一遍，又出现下面的情况
@@ -163,14 +186,18 @@ sftp> put /local.html /remote/
 其他同学又说虚拟机必须加载iso镜像文件，尝试失败了两次（每次进入登陆页面，光驱就会消失）。
 
 又只好再来一遍，最后一遍成功。应该是中间操作失误，不是镜像文件的问题。
+### 5.虚拟机打开失败
+![虚拟机打开失败](/chap0x01/img/15.png)
+
+网上查询，试了好几种方法，没有成功，找不到问题源头，只好重装。
 
 
 ## 参考文献 
-https://c4pr1c3.github.io/LinuxSysAdmin/chap0x01.exp.md.html#/title-slide
+[老师ppt](https://c4pr1c3.github.io/LinuxSysAdmin/chap0x01.exp.md.html#/title-slide)
 
-https://blog.csdn.net/qq_31989521/article/details/58600426?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task
+[自动安装具体步骤参考](https://blog.csdn.net/qq_31989521/article/details/58600426?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
 
-http://www.pgygho.com/help/fwq/16111.html
+[开机就可以自动获取IP地址上网参考](http://www.pgygho.com/help/fwq/16111.html)
 
-https://blog.csdn.net/banzhihuanyu/article/details/79169498
-
+[使用ssh远程ubuntu虚拟机sftp传送文件参考](https://blog.csdn.net/banzhihuanyu/article/details/79169498
+)
