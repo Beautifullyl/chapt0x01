@@ -19,12 +19,14 @@ root权限：
         netplan apply
 
 ![修改yaml文件](img/3.png)
+
 #### ifconfig显示双网卡，enp0s8处于DOWN状态
 
 #### ifconfig enp0s8 up，开启UP状态
 
 ip a显示如下
-![查看网卡ip](/img/1.jpg)
+
+![查看网卡ip](/chap0x01/img/1.jpg)
 
 ### 3.putty连接虚拟机
 #### 打开putty，输入host-only网卡ip，连接虚拟机
@@ -32,7 +34,11 @@ ip a显示如下
 ### 4.使用psftp将用于ubuntu18.04.4镜像文件复制进虚拟机
 #### psftp连接虚拟机
 
-![psftp连接虚拟机](/img/4.jpg)
+open+'hostname'
+
+输入用户名密码就可以连接
+
+![pstfp连接](img/5.jpg)
 
 #### 将镜像文件传送到虚拟机 ：
 
@@ -41,6 +47,7 @@ cd /home/lyl
 put [本地文件地址+文件名] [虚拟机文件地址+文件名]
 
 ![传送镜像文件](img/5.png)
+
 ### 5.挂载iso文件，克隆光盘内容
 #### 在当前用户目录下（/home/lyl）创建一个用于挂载iso镜像文件的目录
 mkdir loopdir
@@ -48,12 +55,14 @@ mkdir loopdir
 root权限：mount  /home/lyl/ 1.iso loopdir
 
 ![挂载镜像文件](img/6.png)
+
 #### 创建一个工作目录用于克隆光盘内容
 mkdir cd
 #### 同步光盘内容到目标工作目录
 rsync -av loopdir/ cd
 
 ![克隆光盘内容](img/7.png)
+
 #### 卸载iso镜像
 umount loopdir
 #### 进入目标工作目录
@@ -77,6 +86,7 @@ label autoinstall
  Esc+wq！
  #### 用pstfp将老师提供ubuntu-server-autoinstall.seed传输到工作目录/home/cuc/cd/preseed/
  ![传输seed文件](img/8.png)
+
  #### 重新生成md5sum.txt
 cd /home/lyl/cd && find . -type f -print0 | xargs -0 md5sum > md5sum.txt
 #### 封闭改动后的目录到.iso
@@ -134,7 +144,9 @@ sftp> put /local.html /remote/
 第二次尝试出现此问题，看完老师在b站上的视频，发现是01-netcfg.yaml没有改，改后解决。
 ### 2.pstfp传送文件的时候总是出现找不到cd目录
 ![找不到路径](img/9.png)
+
 ![找不到路径2](img/10.png)
+
 解决方法：修改路径格式。暂时还没有找到规律
 ### 或者是访问cd目录被拒绝
 ![拒绝](img/11.png)
