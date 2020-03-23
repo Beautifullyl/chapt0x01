@@ -30,7 +30,7 @@ ip a显示如下
 
 ### 3.putty连接虚拟机
 #### 打开putty，输入host-only网卡ip，连接虚拟机
-![putty连接虚拟机](img/2.jpg)
+![putty连接虚拟机](/chap0x01/img/2.jpg)
 ### 4.使用psftp将用于ubuntu18.04.4镜像文件复制进虚拟机
 #### psftp连接虚拟机
 
@@ -38,7 +38,7 @@ open+'hostname'
 
 输入用户名密码就可以连接
 
-![pstfp连接](img/5.jpg)
+![pstfp连接](/chap0x01/img/4.jpg)
 
 #### 将镜像文件传送到虚拟机 ：
 
@@ -46,7 +46,7 @@ cd /home/lyl
 
 put [本地文件地址+文件名] [虚拟机文件地址+文件名]
 
-![传送镜像文件](img/5.png)
+![传送镜像文件](/chap0x01/img/5.png)
 
 ### 5.挂载iso文件，克隆光盘内容
 #### 在当前用户目录下（/home/lyl）创建一个用于挂载iso镜像文件的目录
